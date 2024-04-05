@@ -1,0 +1,138 @@
+* {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.logo {
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+body.dark-theme {
+    background-color: #1f1f1f;
+    color: #ffffff;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigation i {
+    padding-right: 10px;
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.forex-title {
+    text-align: center;
+    padding-bottom: 50px;
+}
+
+.forex-title h1 {
+    font-size: 50px;
+    /* Increase font size */
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: space-around; /* Distribute buttons evenly */
+    width: 100%;
+}
+
+.pill-button {
+    border-radius: 50px; /* Adjust border-radius to create pill shape */
+    background-color: transparent; /* Initially transparent background */
+    width: 350px;
+    height: 80px;
+    padding: 20px 40px; /* Adjust padding as needed */
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center align items vertically */
+    text-align: center; /* Center align text */
+    position: relative;
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+}
+ 
+.pill-button.active,
+.pill-button:hover {
+    background-color: #e6edf7; /* Apply background color when active or on hover */
+}
+
+.flag-images {
+    position: absolute;
+    top: 50%;
+    right: 290px; /* Adjust left position for the images */
+    transform: translateY(-50%);
+}
+
+.flag-images img {
+    width: 25px; /* Adjust image size as needed */
+    display: block;
+}
+
+.top-flag {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+}
+
+.bottom-flag {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+}
+
+.button-text {
+    margin-right: 90px;
+    font-size: large;
+    font-weight: 400;
+    position: relative;
+}
+
+.exchange-rate {
+    
+    font-size: medium;
+    margin-right: 130px;
+    font-weight: 400; /* Make exchange rate text bold */
+}
+
+.currency-pair-graph {
+    margin-top: 50px;
+    
+}
+
+.button-container {
+    position: absolute;
+    top: 10px;
+    left: 60px;
+    display: flex;
+    gap: 10px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.graph-icon {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.graph-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.graph-icon:active {
+    transform: translateY(1px);
+}
+
+.active-icon {
+    background-color: rgba(0, 0, 0, 0.1);
+}

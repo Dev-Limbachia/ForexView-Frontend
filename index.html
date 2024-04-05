@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./style.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Hanken+Grotesk:ital,wght@0,900;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    </style>
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Forex View</title>
+</head>
+
+<body>
+    <header>
+        <div class="navigation">
+            <div class="logo">
+                <img id="logo-img" src="./image/LogoLight.png" height="25px" width="140px" alt="Logo" />
+            </div>
+            <div class="theme-changer">
+                <i id="theme-toggle" class="fa-solid fa-toggle-off" style=" font-size: 28px"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="forex-title">
+            <h1>Forex market</h1>
+        </div>
+
+        <div class="buttons-container">
+            <button class="pill-button active" onclick="toggleActive(this)">
+                <div class="flag-images">
+                    <img src="./image/EUR_flag.png" alt="EUR Flag" class="top-flag" />
+                    <img src="./image/USD_flag.png" alt="USD Flag" class="bottom-flag" />
+                </div>
+                <div class="button-content">
+                    <div class="button-text">EUR to USD</div>
+                    <div class="exchange-rate">1.2346</div>
+                </div>
+            </button>
+
+            <button class="pill-button" onclick="toggleActive(this)">
+                <div class="flag-images">
+                    <img src="./image/JPY_flag.png" alt="JPY Flag" class="top-flag" />
+                    <img src="./image/USD_flag.png" alt="USD Flag" class="bottom-flag" />
+                </div>
+                <div class="button-content">
+                    <div class="button-text">JPY to USD</div>
+                    <div class="exchange-rate">1.2346</div>
+                </div>
+            </button>
+
+            <button class="pill-button" onclick="toggleActive(this)">
+                <div class="flag-images">
+                    <img src="./image/GBP_flag.png" alt="GBP Flag" class="top-flag" />
+                    <img src="./image/USD_flag.png" alt="USD Flag" class="bottom-flag" />
+                </div>
+                <div class="button-content">
+                    <div class="button-text">GBP to USD</div>
+                    <div class="exchange-rate">1.2346</div>
+                </div>
+            </button>
+        </div>
+
+        <section class="currency-pair-graph" style="position: relative;">
+            <div id="myPlot" style="width:100%;max-width:1250px; height:445px"></div>
+        
+            <div class="button-container">
+                <svg viewBox="0 0 28 28" width="35" height="35" class="graph-icon active-icon" onclick="switchToArea()">
+                    <path fill="currentColor" d="M21.88 7.35c.8-.76 2.12-.2 2.12.9v11.5c0 .7-.56 1.25-1.25 1.25H5.25C4.56 21 4 20.44 4 19.76v-5.48c0-.38.18-.74.48-.98l5.24-4.08c.46-.36 1.11-.35 1.56.02l4.68 3.8 5.92-5.69Zm.62 1.48-5.98 5.74a.75.75 0 0 1-1 .04l-5.03-4.1-4.99 3.9v5.1h17V8.83Z"></path>
+                </svg>
+                <svg viewBox="0 0 28 28" width="35" height="35" class="graph-icon" onclick="switchToCandlestick()">
+                    <path fill="currentColor" d="M12 7h-.75V4h-1.5v3H9a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h.75v3h1.5v-3H12a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1ZM9.5 19.5v-11h2v11h-2Zm8-3v-5h2v5h-2Zm.24-6.5H17a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h.75v3h1.5v-3H20a1 1 0 0 0 1-1v-6a1 1 0 0 0-1-1h-.76V7h-1.5v3Z"></path>
+                </svg>
+                <svg viewBox="0 0 28 28" width="35" height="35" class="graph-icon" onclick="maximize()">
+                    <path fill="currentColor" d="M17 5.5h3A2.5 2.5 0 0 1 22.5 8v3H24V8a4 4 0 0 0-4-4h-3v1.5ZM11 5.5V4H8a4 4 0 0 0-4 4v3h1.5V8A2.5 2.5 0 0 1 8 5.5h3ZM5.5 17H4v3a4 4 0 0 0 4 4h3v-1.5H8A2.5 2.5 0 0 1 5.5 20v-3ZM17 22.5V24h3a4 4 0 0 0 4-4v-3h-1.5v3a2.5 2.5 0 0 1-2.5 2.5h-3Z"></path>
+                </svg>
+            </div>
+        </section>   
+
+    </main>
+
+    <script src="./javascript/index.js"></script>
+</body>
+
+</html>
