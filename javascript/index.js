@@ -123,4 +123,43 @@ const xArray = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180,
                 }
 
 
+// Left Right pagination 
+let currentIndex = 0; // Track the current start index of visible pills
+const pillsPerPage = 3; // Number of pills visible per slide
 
+document.addEventListener('DOMContentLoaded', function() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    prevBtn.addEventListener('click', scrollLeft);
+    nextBtn.addEventListener('click', scrollRight);
+});
+
+function scrollRight() {
+    const totalPills = document.querySelectorAll('.pill-button').length;
+    if (currentIndex < totalPills - pillsPerPage) {
+        currentIndex += 1;
+        updateVisibility();
+    }
+}
+
+function scrollLeft() {
+    if (currentIndex > 0) {
+        currentIndex -= 2;
+        updateVisibility();
+    }
+}
+
+function updateVisibility() {
+    const pills = document.querySelectorAll('.pill-button');
+    pills.forEach((pill, index) => {
+        if (index >= currentIndex && index < currentIndex + pillsPerPage) {
+            pill.style.display = 'inline-block';
+        } else {
+            pill.style.display = 'none';
+        }
+    });
+}
+
+// Initial visibility setup
+updateVisibility();
